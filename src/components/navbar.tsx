@@ -32,7 +32,8 @@ const menu = [
 export default function Navbar() {
     const pathname = usePathname();
     const { data: session } = useSession();
-
+    console.log("user = ", session?.user?.name);
+    console.log("user = ", session?.user?.image);
     return (
         <div className="flex items-center justify-between p-4">
             <Link href="/">Instatgram</Link>
