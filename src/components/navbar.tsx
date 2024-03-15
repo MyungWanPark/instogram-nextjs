@@ -10,6 +10,7 @@ import NewFillIcon from "./ui/icons/NewFillIcon";
 import { usePathname } from "next/navigation";
 import ColorButton from "./ui/ColorButton";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Avatar from "./Avatar";
 
 const menu = [
     {
@@ -32,8 +33,8 @@ const menu = [
 export default function Navbar() {
     const pathname = usePathname();
     const { data: session } = useSession();
-    console.log("user = ", session?.user?.name);
-    console.log("user = ", session?.user?.image);
+    const user = session?.user;
+
     return (
         <div className="flex items-center justify-between p-4">
             <Link href="/">Instatgram</Link>
@@ -48,21 +49,30 @@ export default function Navbar() {
                             </li>
                         );
                     })}
-                    {session ? (
-                        <ColorButton
-                            text="Sign out"
-                            onClick={() => {
-                                signOut();
-                            }}
-                        />
-                    ) : (
-                        <ColorButton
-                            text="Sign in"
-                            onClick={() => {
-                                signIn();
-                            }}
-                        />
+                    {user && (
+                        <li>
+                            <Link href={`/user/${user.username}`}>
+                                <Avatar image={user.image} />
+                            </Link>
+                        </li>
                     )}
+                    <li>
+                        {session ? (
+                            <ColorButton
+                                text="Sign out"
+                                onClick={() => {
+                                    signOut();
+                                }}
+                            />
+                        ) : (
+                            <ColorButton
+                                text="Sign in"
+                                onClick={() => {
+                                    signIn();
+                                }}
+                            />
+                        )}
+                    </li>
                 </ul>
             </nav>
         </div>
