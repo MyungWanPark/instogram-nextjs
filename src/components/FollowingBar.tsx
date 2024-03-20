@@ -14,19 +14,42 @@ export default function FollowingBar() {
         4. 서버가 응답으로 클라이언트로 사용자 목록을 되돌려준다.
     */
     const { data, isLoading: loading, error } = useSWR<DetailUser>("/api/me");
-    const followings = data?.following;
+    // const followings = data?.following;
+    const followings = data?.following && [
+        ...data.following,
+        ...data.following,
+        ...data.following,
+        ...data.following,
+        { username: "asdfasdfasdfasasdasddasdfadsasd", image: "sdfdsfdsf" },
+    ];
 
     return (
-        <section>
-            {loading && <PropagateLoader color="#36d7b7" />}
+        <section className="p-4 shadow-md rounded-lg w-full flex justify-center min-h-[90px]">
+            {loading && (
+                <PropagateLoader
+                    size={8}
+                    color="#36d7b7"
+                    cssOverride={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                />
+            )}
             {followings?.length === 0 && <p>You don't have followings...</p>}
-            <ul>
+            <ul className="flex gap-4 w-full overflow-x-auto">
                 {followings?.map(({ username, image }) => {
                     return (
                         <li key={username}>
-                            <Link href={`/user/${username}`}>
+                            <Link
+                                href={`/user/${username}`}
+                                className="flex flex-col items-center w-20"
+                            >
                                 <Avatar image={image || ""} heightLight />
-                                <p>{username}</p>
+                                <p className="text-ellipsis overflow-hidden w-full text-center">
+                                    {username}
+                                </p>
                             </Link>
                         </li>
                     );
