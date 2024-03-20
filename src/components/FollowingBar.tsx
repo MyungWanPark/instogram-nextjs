@@ -5,6 +5,7 @@ import Link from "next/link";
 import { PropagateLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
+import ScrollableBar from "./ui/ScrollableBar";
 
 export default function FollowingBar() {
     /* 
@@ -24,13 +25,12 @@ export default function FollowingBar() {
     ];
 
     return (
-        <section className="p-4 shadow-md rounded-lg w-full flex justify-center min-h-[90px]">
+        <section className="p-4 shadow-md rounded-lg w-full flex justify-center min-h-[90px] overflow-x-auto">
             {loading && (
                 <PropagateLoader
                     size={8}
                     color="#36d7b7"
                     cssOverride={{
-                        width: "100%",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -38,23 +38,24 @@ export default function FollowingBar() {
                 />
             )}
             {followings?.length === 0 && <p>You don't have followings...</p>}
-            <ul className="flex gap-4 w-full overflow-x-auto">
-                {followings?.map(({ username, image }) => {
-                    return (
-                        <li key={username}>
+            {followings && followings.length > 0 && (
+                <ScrollableBar>
+                    {followings?.map(({ username, image }) => {
+                        return (
                             <Link
+                                key={username}
                                 href={`/user/${username}`}
-                                className="flex flex-col items-center w-20"
+                                className="flex flex-col items-center w-20 "
                             >
                                 <Avatar image={image || ""} heightLight />
                                 <p className="text-ellipsis overflow-hidden w-full text-center">
                                     {username}
                                 </p>
                             </Link>
-                        </li>
-                    );
-                })}
-            </ul>
+                        );
+                    })}
+                </ScrollableBar>
+            )}
         </section>
     );
 }
