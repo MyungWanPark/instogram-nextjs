@@ -12,7 +12,9 @@ export default function Avatar({
     return (
         <div className={getContainerStyle(size, heightLight)}>
             <img
-                className={`rounded-full bg-white ${getImageSizeStyle(size)}`}
+                className={`object-cover rounded-full bg-white ${getImageSizeStyle(
+                    size
+                )}`}
                 src={image}
                 alt="avatar"
                 referrerPolicy="no-referrer"
