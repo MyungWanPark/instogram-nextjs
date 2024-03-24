@@ -1,4 +1,6 @@
+import { SimplePost } from "@/model/post";
 import { client } from "../../sanity/lib/client";
+import { urlForImage } from "../../sanity/lib/image";
 
 const simplePostProjection = `
     ...,
@@ -13,7 +15,14 @@ const simplePostProjection = `
 `;
 
 export async function getFollowingPostsBy(username: string) {
-    return client.fetch(
-        `*[_type == "post" && author->username == "${username}" || author._ref in *[_type == "user" && username == "${username}"].following[]._ref] | order(_createdAt desc){${simplePostProjection}}`
-    );
+    return client
+        .fetch(
+            `*[_type == "post" && author->username == "${username}" || author._ref in *[_type == "user" && username == "${username}"].following[]._ref] | order(_createdAt desc){${simplePostProjection}}`
+        )
+        .then((posts: SimplePost[]) =>
+            posts.map((post) => ({
+                ...post,
+                image: urlForImage(post.image),
+            }))
+        );
 }

@@ -1,3 +1,5 @@
+import { Image } from "sanity";
+
 export type Comment = {
     username: string;
     image: string;
@@ -12,7 +14,7 @@ export type FullPost = {
     id: string;
     username: string;
     userImage: string;
-    image: string;
+    image: Image;
     likes: string[];
     text: string;
     comments: Comment[];
