@@ -5172,6 +5172,7 @@ __metadata:
     styled-components: "npm:^6.1.8"
     swr: "npm:^2.2.5"
     tailwindcss: "npm:^3.3.0"
+    timeago.js: "npm:^4.0.2"
     typescript: "npm:^5"
   languageName: unknown
   linkType: soft
@@ -8784,6 +8785,13 @@ __metadata:
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: 4b09f3774099de0d4df26d95c5821a62faee32c7e96fb1f4ebd54a2d7c11c57fe88b0a0d49cf375de5fee5ae6bf4eb56dbbf29d07366864e2ee805349970d3cc
+  languageName: node
+  linkType: hard
+
+"timeago.js@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "timeago.js@npm:4.0.2"
+  checksum: e4cf66df2dfa2bc17db6e7a7c591d1e877e09e91e118784347a0b2390c38d7d292d2742e29edde9cdf4eaec61e8c4ef9b9f9c8b539f03d2613403dd7ccfc6cc8
   languageName: node
   linkType: hard
 
