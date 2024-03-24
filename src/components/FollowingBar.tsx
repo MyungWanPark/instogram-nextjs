@@ -29,7 +29,7 @@ export default function FollowingBar() {
             {loading && (
                 <PropagateLoader
                     size={8}
-                    color="#36d7b7"
+                    color="red"
                     cssOverride={{
                         display: "flex",
                         alignItems: "center",

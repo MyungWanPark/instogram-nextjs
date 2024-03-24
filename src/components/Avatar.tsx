@@ -1,12 +1,14 @@
+type AvatarSize = "small" | "medium" | "large";
+
 type Props = {
     image: string;
-    size?: "small" | "normal";
+    size?: AvatarSize;
     heightLight?: boolean;
 };
 
 export default function Avatar({
     image,
-    size = "normal",
+    size = "large",
     heightLight = false,
 }: Props) {
     return (
@@ -23,20 +25,33 @@ export default function Avatar({
     );
 }
 
-function getContainerStyle(
-    size: "small" | "normal",
-    heightLight: boolean
-): string {
+function getContainerStyle(size: AvatarSize, heightLight: boolean): string {
     const baseStyle = "rounded-full flex justify-center items-center";
     const highLightStyle = heightLight
         ? "bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300"
         : "";
-    const sizeStyle = size === "small" ? "w-9 h-9" : "w-[68px] h-[68px]";
+    const sizeStyle = getContainerSizeStyle(size);
     return `${baseStyle} ${highLightStyle} ${sizeStyle}`;
 }
 
-function getImageSizeStyle(size: "small" | "normal"): string {
-    return size === "small"
-        ? "w-[34px] h-[34px] p-[0.1rem]"
-        : "w-16 h-16 p-[0.2rem]";
+function getContainerSizeStyle(size: AvatarSize): string {
+    switch (size) {
+        case "small":
+            return "w-9 h-9";
+        case "medium":
+            return "w-11 h-11";
+        case "large":
+            return "w-[68px] h-[68px]";
+    }
+}
+
+function getImageSizeStyle(size: AvatarSize): string {
+    switch (size) {
+        case "small":
+            return "w-[34px] h-[34px] p-[0.1rem]";
+        case "medium":
+            return "w-[42px] h-[42px] p-[0.1rem]";
+        case "large":
+            return "w-16 h-16 p-[0.2rem]";
+    }
 }
