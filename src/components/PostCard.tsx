@@ -1,8 +1,13 @@
+"use client";
+
 import { SimplePost } from "@/model/post";
 import Avatar from "./Avatar";
 import Image from "next/image";
 import PostActions from "./PostActions";
 import CommentForm from "./CommentForm";
+import { useState } from "react";
+import PostModal from "./PostModal";
+import ModalPortal from "./ui/ModalPortal";
 
 type Props = {
     post: SimplePost;
@@ -11,6 +16,9 @@ type Props = {
 
 export default function PostCard({ post, priority = false }: Props) {
     const { username, userImage, image, likes, text, createdAt } = post;
+    const [showModal, setShowModal] = useState(false);
+    const modalPortal = document.getElementById("modalPortal") as Element;
+
     return (
         <article className="rounded-lg shadow-md border border-gray-200">
             <div className="flex items-center p-2">
@@ -24,6 +32,7 @@ export default function PostCard({ post, priority = false }: Props) {
                 height={500}
                 className="w-full object-cover aspect-square"
                 priority={priority}
+                onClick={() => setShowModal(true)}
             />
             <PostActions
                 likes={likes}
@@ -32,6 +41,13 @@ export default function PostCard({ post, priority = false }: Props) {
                 username={username}
             />
             <CommentForm />
+            {showModal && (
+                <ModalPortal>
+                    <PostModal onClose={() => setShowModal(false)}>
+                        <p>this is modal content</p>
+                    </PostModal>
+                </ModalPortal>
+            )}
         </article>
     );
 }

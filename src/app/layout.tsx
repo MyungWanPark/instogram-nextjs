@@ -30,6 +30,7 @@ export default function RootLayout({
                         <SWRConfigContext>{children}</SWRConfigContext>
                     </main>
                 </AuthContext>
+                <div id="modalPortal"></div>
             </body>
         </html>
     );
