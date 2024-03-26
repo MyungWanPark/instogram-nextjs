@@ -8,6 +8,7 @@ import CommentForm from "./CommentForm";
 import { useState } from "react";
 import PostModal from "./PostModal";
 import ModalPortal from "./ui/ModalPortal";
+import PostDetail from "./PostDetail";
 
 type Props = {
     post: SimplePost;
@@ -44,7 +45,7 @@ export default function PostCard({ post, priority = false }: Props) {
             {showModal && (
                 <ModalPortal>
                     <PostModal onClose={() => setShowModal(false)}>
-                        <p>this is modal content</p>
+                        <PostDetail post={post} />
                     </PostModal>
                 </ModalPortal>
             )}
