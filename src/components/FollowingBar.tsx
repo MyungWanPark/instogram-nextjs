@@ -25,7 +25,7 @@ export default function FollowingBar() {
     ];
 
     return (
-        <section className="p-4 shadow-md rounded-lg w-full flex justify-center min-h-[90px] overflow-x-auto">
+        <section className="p-4 shadow-md rounded-lg w-full flex justify-center min-h-[90px] overflow-x-auto relative z-0">
             {loading && (
                 <PropagateLoader
                     size={8}
