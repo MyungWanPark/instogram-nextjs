@@ -1,3 +1,11 @@
+import UserSearch from "@/UserSearch";
+
 export default function SearchPage() {
-    return <h1>search page</h1>;
+    /* 
+        1. /api/search/keyword 로 검색
+            해당 유저 검색
+        2. /api/search 로 검색
+            모든 유저 검색
+    */
+    return <UserSearch />;
 }
