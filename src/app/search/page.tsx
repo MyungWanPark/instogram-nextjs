@@ -1,4 +1,4 @@
-import UserSearch from "@/UserSearch";
+import UserSearch from "@/components/UserSearch";
 
 export default function SearchPage() {
     /* 
