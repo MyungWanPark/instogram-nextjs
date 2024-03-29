@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailUser } from "@/model/user";
+import { HomeUser } from "@/model/user";
 import Link from "next/link";
 import { PropagateLoader } from "react-spinners";
 import useSWR from "swr";
@@ -14,7 +14,7 @@ export default function FollowingBar() {
         3. 서버에서 사용자 정보를 기반으로 sanity에 following 목록을 조회한다.
         4. 서버가 응답으로 클라이언트로 사용자 목록을 되돌려준다.
     */
-    const { data, isLoading: loading, error } = useSWR<DetailUser>("/api/me");
+    const { data, isLoading: loading, error } = useSWR<HomeUser>("/api/me");
     // const followings = data?.following;
     const followings = data?.following && [
         ...data.following,
