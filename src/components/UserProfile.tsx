@@ -23,20 +23,22 @@ export default function UserProfile({ user }: Props) {
         },
     ];
     return (
-        <section>
-            <Avatar image={image ?? ""} />
-            <div>
-                <h1>{username}</h1>
-                <FollowButton user={user} />
-                <ul>
+        <section className="w-full flex flex-col md:flex-row border-b border-neutral-300 justify-center items-center py-12">
+            <Avatar image={image ?? ""} heightLight size="xlarge" />
+            <div className="md:ml-10">
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <h1 className="text-2xl font-bold md:mr-8">{username}</h1>
+                    <FollowButton user={user} />
+                </div>
+                <ul className="flex gap-4 justify-center my-2">
                     {userInfos.map(({ title, value }, id) => (
-                        <li key={id}>
-                            <span>{value}</span>
+                        <li key={id} className="mr-2">
+                            <span className="font-bold mr-1">{value}</span>
                             {title}
                         </li>
                     ))}
                 </ul>
-                <p>{name}</p>
+                <p className="text-center text-lg font-bold">{name}</p>
             </div>
         </section>
     );
