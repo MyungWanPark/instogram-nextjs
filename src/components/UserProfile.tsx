@@ -27,7 +27,9 @@ export default function UserProfile({ user }: Props) {
             <Avatar image={image ?? ""} heightLight size="xlarge" />
             <div className="md:ml-10">
                 <div className="flex flex-col md:flex-row justify-center items-center">
-                    <h1 className="text-2xl font-bold md:mr-8">{username}</h1>
+                    <h1 className="text-2xl mb-2 font-bold md:mr-8 md:mb-0">
+                        {username}
+                    </h1>
                     <FollowButton user={user} />
                 </div>
                 <ul className="flex gap-4 justify-center my-2">
