@@ -3,11 +3,17 @@ import SignIn from "@/components/SignIn";
 import { getServerSession } from "next-auth";
 import { getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
 type Props = {
     searchParams: {
         callbackUrl: string;
     };
+};
+
+export const metadata: Metadata = {
+    title: "SignIn",
+    description: "Signup or Login to Instogram",
 };
 
 export default async function SignInPage({

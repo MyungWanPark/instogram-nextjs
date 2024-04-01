@@ -2,9 +2,15 @@ import FollowingBar from "@/components/FollowingBar";
 import PostList from "@/components/PostList";
 import SideBar from "@/components/SideBar";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Home",
+    description: "PhotoLists of Instogram followers",
+};
 
 export default async function Home() {
     const session = await getServerSession(authOptions);

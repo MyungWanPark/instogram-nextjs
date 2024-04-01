@@ -1,4 +1,4 @@
-import { SearchUserResult } from "@/model/user";
+import { ProfileUser, SearchUserResult } from "@/model/user";
 import { client } from "../../sanity/lib/client";
 
 type OAuthUser = {
@@ -52,7 +52,7 @@ export async function searchUsers(keyword?: string) {
         );
 }
 
-export async function getUserProfileBy(username: string) {
+export async function getUserProfileBy(username: string): Promise<ProfileUser> {
     return client
         .fetch(
             `*[_type == "user" && username == "${username}"][0]{
