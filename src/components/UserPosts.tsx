@@ -33,18 +33,23 @@ const Tabs: TabConst[] = [
 ];
 
 export default function UserPosts({ user: { username } }: Props) {
-    // /api/user/{username}/posts
-    // /api/user/{username}/liked
-    // /api/user/{username}/saved
-    const [tab, setTab] = useState<Tab>("saved");
+    const [tab, setTab] = useState<Tab>(Tabs[0].title);
 
     return (
-        <section>
-            <ul>
+        <section className="w-full">
+            <ul className="flex justify-evenly uppercase">
                 {Tabs.map(({ title, icon }, index) => (
-                    <li key={title} onClick={() => setTab(title)}>
-                        <button>{icon}</button>
-                        <span>{title}</span>
+                    <li
+                        key={title}
+                        onClick={() => setTab(title)}
+                        className={`flex items-center p-4 border-black cursor-pointer ${
+                            tab === title && "border-t font-bold"
+                        }`}
+                    >
+                        <button className="scale-150 md:scale-100">
+                            {icon}
+                        </button>
+                        <span className="hidden md:inline">{title}</span>
                     </li>
                 ))}
             </ul>
