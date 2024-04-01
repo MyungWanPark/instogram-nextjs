@@ -19,7 +19,6 @@ type Props = {
 export default function PostCard({ post, priority = false }: Props) {
     const { username, userImage, image, likes, text, createdAt } = post;
     const [showModal, setShowModal] = useState(false);
-    const modalPortal = document.getElementById("modalPortal") as Element;
 
     return (
         <article className="rounded-lg shadow-md border border-gray-200">

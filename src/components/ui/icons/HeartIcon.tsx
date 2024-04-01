@@ -1,5 +1,9 @@
 import { CiHeart } from "react-icons/ci";
 
-export default function HeartIcon() {
-    return <CiHeart />;
+type Props = {
+    className?: string;
+};
+
+export default function HeartIcon({ className }: Props) {
+    return <CiHeart className={className || "w-9 h-9"} />;
 }
