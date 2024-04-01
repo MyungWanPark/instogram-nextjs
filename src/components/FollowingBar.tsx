@@ -37,7 +37,9 @@ export default function FollowingBar() {
                     }}
                 />
             )}
-            {followings?.length === 0 && <p>You don't have followings...</p>}
+            {followings?.length === 0 && (
+                <p>{`You don't have followings...`}</p>
+            )}
             {followings && followings.length > 0 && (
                 <ScrollableBar>
                     {followings?.map(({ username, image }) => {
