@@ -27,7 +27,7 @@ export default function PostDetail({ post }: Props) {
                     alt={`photo by ${username}`}
                     sizes="650px"
                     fill
-                    className="w-full object-cover aspect-square"
+                    className="w-full object-cover"
                 />
             </div>
             <div className="basis-2/5 w-full flex flex-col">

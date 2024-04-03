@@ -1,9 +1,9 @@
-import { CiBookmark } from "react-icons/ci";
+import { BsBookmark } from "react-icons/bs";
 
 type Props = {
     className?: string;
 };
 
 export default function BookmarkIcon({ className }: Props) {
-    return <CiBookmark className={className || "w-9 h-9"} />;
+    return <BsBookmark className={className || "w-6 h-6"} />;
 }

@@ -21,7 +21,6 @@ export default function FollowingBar() {
         ...data.following,
         ...data.following,
         ...data.following,
-        { username: "asdfasdfasdfasasdasddasdfadsasd", image: "sdfdsfdsf" },
     ];
 
     return (

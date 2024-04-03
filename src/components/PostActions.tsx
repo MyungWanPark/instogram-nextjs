@@ -1,6 +1,10 @@
 import HeartIcon from "./ui/icons/HeartIcon";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
 import { parseDate } from "@/util/date";
+import { useState } from "react";
+import ToggleButton from "./ui/ToggleButton";
+import HeartFillIcon from "./ui/icons/HeartFillIcon";
+import BookmarkFillIcon from "./ui/icons/BookmarkFillIcon";
 
 type Props = {
     likes: string[];
@@ -15,11 +19,24 @@ export default function PostActions({
     username,
     createdAt,
 }: Props) {
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
+
     return (
         <>
             <div className="flex justify-between p-2 text-xl font-bold">
-                <HeartIcon />
-                <BookmarkIcon />
+                <ToggleButton
+                    toggled={liked}
+                    onToggle={setLiked}
+                    outlineIcon={<HeartIcon />}
+                    fillIcon={<HeartFillIcon />}
+                />
+                <ToggleButton
+                    toggled={bookmarked}
+                    onToggle={setBookmarked}
+                    outlineIcon={<BookmarkIcon />}
+                    fillIcon={<BookmarkFillIcon />}
+                />
             </div>
             <p className="px-2 text-gray-900 font-bold text-md">
                 {likes?.length ?? 0} {likes.length > 1 ? "likes" : "like"}

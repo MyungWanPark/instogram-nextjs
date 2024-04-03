@@ -14,11 +14,8 @@ export async function GET(_: NextRequest, context: Context) {
     }
 
     const [username, query] = slug;
-    console.log("query = ", query);
-    console.log("username = ", username);
     let request = getPostsOf;
     if (query === "liked") {
-        console.log("liked 실행됨");
         request = getLikedPostsOf;
     } else if (query === "saved") {
         request = getSavedPostsOf;
