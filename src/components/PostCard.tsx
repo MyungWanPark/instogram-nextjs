@@ -32,12 +32,7 @@ export default function PostCard({ post, priority = false }: Props) {
                 priority={priority}
                 onClick={() => setShowModal(true)}
             />
-            <PostActions
-                likes={likes}
-                text={text}
-                createdAt={createdAt}
-                username={username}
-            />
+            <PostActions post={post} />
             <CommentForm />
             {showModal && (
                 <ModalPortal>
