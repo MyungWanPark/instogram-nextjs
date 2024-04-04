@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { SearchUserResult } from "../model/user";
 import GridSpinner from "./GridSpinner";
 import UserSearchCard from "./UserSearchCard";
-import useDebounce from "@/hooks/useDebounce";
+import useDebounce from "@/hooks/debounce";
 
 export default function UserSearch() {
     const [keyword, setKeyword] = useState("");
