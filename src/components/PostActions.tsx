@@ -23,7 +23,7 @@ export default function PostActions({ post }: Props) {
     const [bookmarked, setBookmarked] = useState(false);
     const handleLike = (like: boolean) => {
         if (user) {
-            setLike(post, like);
+            setLike(post, like, user.username);
         }
     };
 
