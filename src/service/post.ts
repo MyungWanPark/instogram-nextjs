@@ -17,7 +17,11 @@ const simplePostProjection = `
 export async function getFollowingPostsBy(username: string) {
     return client
         .fetch(
-            `*[_type == "post" && author->username == "${username}" || author._ref in *[_type == "user" && username == "${username}"].following[]._ref] | order(_createdAt desc){${simplePostProjection}}`
+            `*[_type == "post" && author->username == "${username}" 
+            || author._ref in *[_type == "user" && username == "${username}"].following[]._ref] 
+            | order(_createdAt desc){
+                ${simplePostProjection}
+            }`
         )
         .then(formatDataIncludingImgURL);
 }
@@ -25,8 +29,7 @@ export async function getFollowingPostsBy(username: string) {
 export async function getPostById(id: string) {
     return client
         .fetch(
-            `
-        *[_type == "post" && _id == "${id}"][0]{
+            `*[_type == "post" && _id == "${id}"][0]{
             ...,
             "username": author->username,
             "userImage": author->image,
@@ -56,7 +59,9 @@ export async function getLikedPostsOf(username: string) {
         .fetch(
             `*[_type == "post" && "${username}" in likes[]->username] 
             | order(_createdAt desc)
-            {${simplePostProjection}}`
+            {${simplePostProjection}}`,
+            undefined,
+            { cache: "no-store" }
         )
         .then(formatDataIncludingImgURL);
 }
@@ -66,7 +71,9 @@ export async function getSavedPostsOf(username: string) {
         .fetch(
             `*[_type == "post" && _id in *[_type == "user" && username == "${username}"].bookmark[]._ref ] 
             | order(_createdAt desc)
-            {${simplePostProjection}}`
+            {${simplePostProjection}}`,
+            undefined,
+            { cache: "no-store" }
         )
         .then(formatDataIncludingImgURL);
 }
