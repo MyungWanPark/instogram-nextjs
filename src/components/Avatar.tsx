@@ -1,7 +1,7 @@
 type AvatarSize = "small" | "medium" | "large" | "xlarge";
 
 type Props = {
-    image: string;
+    image?: string;
     size?: AvatarSize;
     heightLight?: boolean;
 };
