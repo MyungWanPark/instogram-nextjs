@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function PostCard({ post, priority = false }: Props) {
-    const { username, userImage, image, likes, text, createdAt } = post;
+    const { username, userImage, image, text, comments } = post;
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -32,7 +32,19 @@ export default function PostCard({ post, priority = false }: Props) {
                 priority={priority}
                 onClick={() => setShowModal(true)}
             />
-            <PostActions post={post} />
+            <PostActions post={post}>
+                <p className="px-2 text-gray-900 text-md">
+                    <span className="mr-2 font-bold">{username}</span>
+                    {text}
+                </p>
+
+                {comments > 1 && (
+                    <button
+                        className="p-2 font-bold text-sky-500"
+                        onClick={() => setShowModal(true)}
+                    >{`View all ${comments} comments`}</button>
+                )}
+            </PostActions>
             <CommentForm />
             {showModal && (
                 <ModalPortal>

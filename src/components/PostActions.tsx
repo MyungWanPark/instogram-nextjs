@@ -12,18 +12,15 @@ import useMe from "@/hooks/me";
 
 type Props = {
     post: SimplePost;
+    children?: React.ReactNode;
 };
 
-export default function PostActions({ post }: Props) {
+export default function PostActions({ post, children }: Props) {
     const { id, likes, text, username, createdAt } = post;
     const { user, setBookmark } = useMe();
 
     const liked = user ? likes.includes(user.username) : false;
-    console.log("user = ", user);
     const bookmarked = user?.bookmark.includes(id) ?? false;
-    console.log("post = ", post);
-    console.log("postId = ", id);
-    console.log("bookmarked = ", bookmarked);
     const { setLike } = usePosts();
 
     const handleLike = (like: boolean) => {
@@ -53,12 +50,7 @@ export default function PostActions({ post }: Props) {
             <p className="px-2 text-gray-900 font-bold text-md">
                 {likes?.length ?? 0} {likes.length > 1 ? "likes" : "like"}
             </p>
-            {text && (
-                <p className="px-2 text-gray-900 text-md">
-                    <span className="mr-2 font-bold">{username}</span>
-                    {text}
-                </p>
-            )}
+            {children}
             <p className="text-gray-500 px-2 py-1 text-sm">
                 {parseDate(createdAt)}
             </p>
