@@ -10,6 +10,7 @@ import PostModal from "./PostModal";
 import ModalPortal from "./ui/ModalPortal";
 import PostDetail from "./PostDetail";
 import PostUserAvatar from "./PostUserAvatar";
+import usePosts from "@/hooks/posts";
 
 type Props = {
     post: SimplePost;
@@ -19,6 +20,8 @@ type Props = {
 export default function PostCard({ post, priority = false }: Props) {
     const { username, userImage, image, text, comments } = post;
     const [showModal, setShowModal] = useState(false);
+    const { submitComment } = usePosts();
+    const onCommentSubmit = (comment: string) => submitComment(post, comment);
 
     return (
         <article className="rounded-lg shadow-md border border-gray-200">
@@ -45,7 +48,7 @@ export default function PostCard({ post, priority = false }: Props) {
                     >{`View all ${comments} comments`}</button>
                 )}
             </PostActions>
-            <CommentForm />
+            <CommentForm onCommentSubmit={onCommentSubmit} />
             {showModal && (
                 <ModalPortal>
                     <PostModal onClose={() => setShowModal(false)}>
