@@ -49,7 +49,9 @@ export async function getPostsOf(username: string) {
         .fetch(
             `*[_type == "post" && author->username == "${username}"] 
             | order(_createdAt desc)
-            {${simplePostProjection}}`
+            {${simplePostProjection}}`,
+            undefined,
+            { cache: "no-store" }
         )
         .then(formatDataIncludingImgURL);
 }

@@ -1,4 +1,4 @@
-import { SimplePost } from "@/model/post";
+import { Comment, SimplePost } from "@/model/post";
 import useSWR from "swr";
 
 async function updateLike(id: string, like: boolean) {
@@ -41,7 +41,7 @@ export default function usePosts() {
         });
     };
 
-    const submitComment = (post: SimplePost, comment: string) => {
+    const submitComment = (post: SimplePost, comment: Comment) => {
         const newPost: SimplePost = {
             ...post,
             comments: post.comments + 1,
@@ -49,7 +49,7 @@ export default function usePosts() {
         const optimisticPosts = posts?.map((p) =>
             p.id === post.id ? newPost : p
         );
-        return mutate(addComment(post.id, comment), {
+        return mutate(addComment(post.id, comment.comment), {
             optimisticData: optimisticPosts,
             populateCache: false,
             revalidate: false,

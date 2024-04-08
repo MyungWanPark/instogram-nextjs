@@ -1,10 +1,8 @@
 "use client";
 
-import { SimplePost } from "@/model/post";
-import Avatar from "./Avatar";
+import { Comment, SimplePost } from "@/model/post";
 import Image from "next/image";
 import PostActions from "./PostActions";
-import CommentForm from "./CommentForm";
 import { useState } from "react";
 import PostModal from "./PostModal";
 import ModalPortal from "./ui/ModalPortal";
@@ -21,7 +19,7 @@ export default function PostCard({ post, priority = false }: Props) {
     const { username, userImage, image, text, comments } = post;
     const [showModal, setShowModal] = useState(false);
     const { submitComment } = usePosts();
-    const onCommentSubmit = (comment: string) => submitComment(post, comment);
+    const onCommentSubmit = (comment: Comment) => submitComment(post, comment);
 
     return (
         <article className="rounded-lg shadow-md border border-gray-200">
@@ -35,7 +33,7 @@ export default function PostCard({ post, priority = false }: Props) {
                 priority={priority}
                 onClick={() => setShowModal(true)}
             />
-            <PostActions post={post}>
+            <PostActions post={post} onComment={onCommentSubmit}>
                 <p className="px-2 text-gray-900 text-md">
                     <span className="mr-2 font-bold">{username}</span>
                     {text}
@@ -48,7 +46,6 @@ export default function PostCard({ post, priority = false }: Props) {
                     >{`View all ${comments} comments`}</button>
                 )}
             </PostActions>
-            <CommentForm onCommentSubmit={onCommentSubmit} />
             {showModal && (
                 <ModalPortal>
                     <PostModal onClose={() => setShowModal(false)}>

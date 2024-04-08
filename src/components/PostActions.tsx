@@ -4,16 +4,18 @@ import { parseDate } from "@/util/date";
 import ToggleButton from "./ui/ToggleButton";
 import HeartFillIcon from "./ui/icons/HeartFillIcon";
 import BookmarkFillIcon from "./ui/icons/BookmarkFillIcon";
-import { SimplePost } from "@/model/post";
+import { Comment, SimplePost } from "@/model/post";
 import usePosts from "@/hooks/posts";
 import useMe from "@/hooks/me";
+import CommentForm from "./CommentForm";
 
 type Props = {
     post: SimplePost;
     children?: React.ReactNode;
+    onComment: (comment: Comment) => void;
 };
 
-export default function PostActions({ post, children }: Props) {
+export default function PostActions({ post, children, onComment }: Props) {
     const { id, likes, text, username, createdAt } = post;
     const { user, setBookmark } = useMe();
 
@@ -27,6 +29,11 @@ export default function PostActions({ post, children }: Props) {
 
     const handleBookmark = (bookmark: boolean) => {
         user && setBookmark(id, bookmark);
+    };
+
+    const handleComment = (comment: string) => {
+        user &&
+            onComment({ username: user.username, image: user.image, comment });
     };
 
     return (
@@ -52,6 +59,7 @@ export default function PostActions({ post, children }: Props) {
             <p className="text-gray-500 px-2 py-1 text-sm">
                 {parseDate(createdAt)}
             </p>
+            <CommentForm onCommentSubmit={handleComment} />
         </>
     );
 }
