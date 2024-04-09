@@ -1,4 +1,5 @@
 import { Comment, SimplePost } from "@/model/post";
+import { useCallback } from "react";
 import useSWR from "swr";
 
 async function updateLike(id: string, like: boolean) {
@@ -23,39 +24,45 @@ export default function usePosts() {
         mutate,
     } = useSWR<SimplePost[]>("/api/posts");
 
-    const setLike = (post: SimplePost, like: boolean, username: string) => {
-        const newPost: SimplePost = {
-            ...post,
-            likes: like
-                ? [...post.likes, username]
-                : post.likes.filter((item) => item !== username),
-        };
-        const optimisticPosts = posts?.map((p) =>
-            p.id === post.id ? newPost : p
-        );
-        return mutate(updateLike(post.id, like), {
-            optimisticData: optimisticPosts,
-            populateCache: false,
-            revalidate: false,
-            rollbackOnError: true,
-        });
-    };
+    const setLike = useCallback(
+        (post: SimplePost, like: boolean, username: string) => {
+            const newPost: SimplePost = {
+                ...post,
+                likes: like
+                    ? [...post.likes, username]
+                    : post.likes.filter((item) => item !== username),
+            };
+            const optimisticPosts = posts?.map((p) =>
+                p.id === post.id ? newPost : p
+            );
+            return mutate(updateLike(post.id, like), {
+                optimisticData: optimisticPosts,
+                populateCache: false,
+                revalidate: false,
+                rollbackOnError: true,
+            });
+        },
+        [posts, mutate]
+    );
 
-    const submitComment = (post: SimplePost, comment: Comment) => {
-        const newPost: SimplePost = {
-            ...post,
-            comments: post.comments + 1,
-        };
-        const optimisticPosts = posts?.map((p) =>
-            p.id === post.id ? newPost : p
-        );
-        return mutate(addComment(post.id, comment.comment), {
-            optimisticData: optimisticPosts,
-            populateCache: false,
-            revalidate: false,
-            rollbackOnError: true,
-        });
-    };
+    const submitComment = useCallback(
+        (post: SimplePost, comment: Comment) => {
+            const newPost: SimplePost = {
+                ...post,
+                comments: post.comments + 1,
+            };
+            const optimisticPosts = posts?.map((p) =>
+                p.id === post.id ? newPost : p
+            );
+            return mutate(addComment(post.id, comment.comment), {
+                optimisticData: optimisticPosts,
+                populateCache: false,
+                revalidate: false,
+                rollbackOnError: true,
+            });
+        },
+        [posts, mutate]
+    );
     return {
         posts,
         isLoading,
