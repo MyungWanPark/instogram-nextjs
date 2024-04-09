@@ -8,7 +8,7 @@ type Props = {
     user: ProfileUser;
 };
 export default function FollowButton({ user }: Props) {
-    const { user: logginUser, error, isLoading } = useMe();
+    const { user: logginUser, toggleFollow, error, isLoading } = useMe();
 
     const showButton = logginUser && logginUser.username !== user.username;
     const isFollowing = !!(
@@ -17,12 +17,17 @@ export default function FollowButton({ user }: Props) {
             (followingUser) => followingUser.username === user.username
         )
     );
+
+    const handleFollow = () => {
+        toggleFollow(user.id, !isFollowing);
+    };
+
     return (
         <>
             {showButton && (
                 <Button
                     text={isFollowing ? "Unfollow" : "Follow"}
-                    onClick={() => {}}
+                    onClick={handleFollow}
                     isRed={isFollowing}
                 />
             )}

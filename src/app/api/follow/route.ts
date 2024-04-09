@@ -1,5 +1,4 @@
 import { authOptions } from "@/auth/authOptions";
-import { dislikePost, likePost } from "@/service/post";
 import { follow, unfollow } from "@/service/user";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -12,7 +11,7 @@ export async function PUT(req: NextRequest) {
         return new Response("Authentication Error", { status: 401 });
     }
 
-    const { id: targetId, isFollow } = await req.json();
+    const { id: targetId, follow: isFollow } = await req.json();
 
     if (!targetId || isFollow === undefined) {
         return new Response("Bad request", { status: 400 });

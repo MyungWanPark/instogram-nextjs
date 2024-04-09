@@ -9,6 +9,13 @@ async function updateBookmark(id: string, bookmark: boolean) {
     }).then((res) => res.json());
 }
 
+async function updateFollow(targetId: string, follow: boolean) {
+    return fetch("/api/follow", {
+        method: "PUT",
+        body: JSON.stringify({ id: targetId, follow }),
+    }).then((res) => res.json());
+}
+
 export default function useMe() {
     const {
         data: user,
@@ -36,10 +43,22 @@ export default function useMe() {
         },
         [user, mutate]
     );
+
+    const toggleFollow = useCallback(
+        (targetId: string, follow: boolean) => {
+            console.log("targetId = ", targetId);
+            console.log("follow = ", follow);
+            return mutate(updateFollow(targetId, follow), {
+                populateCache: false,
+            });
+        },
+        [mutate]
+    );
     return {
         user,
         isLoading,
         error,
         setBookmark,
+        toggleFollow,
     };
 }
