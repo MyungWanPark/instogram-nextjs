@@ -13,15 +13,22 @@ type Props = {
     post: SimplePost;
     children?: React.ReactNode;
     onComment: (comment: Comment) => void;
+    cacheKey?: string;
 };
 
-export default function PostActions({ post, children, onComment }: Props) {
+export default function PostActions({
+    post,
+    children,
+    onComment,
+    cacheKey,
+}: Props) {
     const { id, likes, text, username, createdAt } = post;
     const { user, setBookmark } = useMe();
 
     const liked = user ? likes.includes(user.username) : false;
     const bookmarked = user?.bookmark.includes(id) ?? false;
-    const { setLike } = usePosts();
+    console.log("cacheKey in PostActions = ", cacheKey);
+    const { setLike } = usePosts(cacheKey);
 
     const handleLike = (like: boolean) => {
         user && setLike(post, like, user.username);

@@ -7,9 +7,10 @@ import useDetailPost from "@/hooks/detailPost";
 
 type Props = {
     post: SimplePost;
+    cacheKey?: string;
 };
 
-export default function PostDetail({ post }: Props) {
+export default function PostDetail({ post, cacheKey }: Props) {
     const { username, id, userImage, image, likes, text, createdAt } = post;
     const { post: detailPost, submitComment } = useDetailPost(id);
     const comments = detailPost?.comments;
@@ -59,7 +60,11 @@ export default function PostDetail({ post }: Props) {
                             )
                         )}
                 </ul>
-                <PostActions post={post} onComment={submitComment} />
+                <PostActions
+                    post={post}
+                    onComment={submitComment}
+                    cacheKey={cacheKey}
+                />
             </div>
         </section>
     );
