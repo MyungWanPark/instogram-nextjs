@@ -62,7 +62,9 @@ export async function getUserProfileBy(username: string): Promise<ProfileUser> {
         "following": count(following),
         "followers": count(followers),
         "posts": count(*[_type == "post" && author->username == "${username}"])
-    }`
+    }`,
+            undefined,
+            { cache: "no-store" }
         )
         .then((user) => ({
             ...user,
