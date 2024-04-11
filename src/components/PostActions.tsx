@@ -16,19 +16,13 @@ type Props = {
     cacheKey?: string;
 };
 
-export default function PostActions({
-    post,
-    children,
-    onComment,
-    cacheKey,
-}: Props) {
+export default function PostActions({ post, children, onComment }: Props) {
     const { id, likes, text, username, createdAt } = post;
     const { user, setBookmark } = useMe();
 
     const liked = user ? likes.includes(user.username) : false;
     const bookmarked = user?.bookmark.includes(id) ?? false;
-    console.log("cacheKey in PostActions = ", cacheKey);
-    const { setLike } = usePosts(cacheKey);
+    const { setLike } = usePosts();
 
     const handleLike = (like: boolean) => {
         user && setLike(post, like, user.username);

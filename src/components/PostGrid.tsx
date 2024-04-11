@@ -1,19 +1,10 @@
-import { SimplePost } from "@/model/post";
 import GridSpinner from "./GridSpinner";
-import { Tab } from "./UserPosts";
-import useSWR from "swr";
 import PostGridCard from "./PostGridCard";
 import usePosts from "@/hooks/posts";
 
-type Props = {
-    username: string;
-    query: Tab;
-};
-
-export default function PostGrid({ username, query }: Props) {
-    const cacheKey = `/api/user/${username}/${query}`;
-    const { posts, isLoading, error } = usePosts(cacheKey);
-
+export default function PostGrid() {
+    const { posts, isLoading } = usePosts();
+    console.log(`PostGrid rendered with ${posts?.length} posts`);
     return (
         <div className="w-full">
             {isLoading && (
@@ -25,11 +16,7 @@ export default function PostGrid({ username, query }: Props) {
                 {posts &&
                     posts.map((post, id) => (
                         <li key={post.id}>
-                            <PostGridCard
-                                post={post}
-                                priority={id < 6}
-                                cacheKey={cacheKey}
-                            />
+                            <PostGridCard post={post} priority={id < 6} />
                         </li>
                     ))}
             </ul>

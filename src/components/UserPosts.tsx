@@ -6,6 +6,7 @@ import GridIcon from "./ui/icons/GridIcon";
 import HeartIcon from "./ui/icons/HeartIcon";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
 import PostGrid from "./PostGrid";
+import { CacheKeyContext } from "@/context/CacheKeyContext";
 
 type Props = {
     user: ProfileUser;
@@ -53,7 +54,11 @@ export default function UserPosts({ user: { username } }: Props) {
                     </li>
                 ))}
             </ul>
-            <PostGrid username={username} query={tab} />
+            <CacheKeyContext.Provider
+                value={{ postApiKey: `/api/user/${username}/${tab}` }}
+            >
+                <PostGrid />
+            </CacheKeyContext.Provider>
         </section>
     );
 }
