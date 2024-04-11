@@ -1,7 +1,7 @@
 type Props = {
     text: string;
     onClick: () => void;
-    isRed: boolean;
+    isRed?: boolean;
     disabled?: boolean;
 };
 
