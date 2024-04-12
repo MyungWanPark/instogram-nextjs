@@ -5,8 +5,10 @@ import UserProfile from "./UserProfile";
 import PostUserAvatar from "./PostUserAvatar";
 import FileIcon from "./ui/icons/FileIcon";
 import Button from "./ui/Button";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import Image from "next/image";
+import GridSpinner from "./GridSpinner";
+import { useRouter } from "next/navigation";
 
 type Props = {
     user: AuthUser;
@@ -15,7 +17,11 @@ type Props = {
 export default function NewPost({ user: { username, image } }: Props) {
     const [isDrag, setIsDrag] = useState(false);
     const [file, setFile] = useState<File>();
-
+    const [value, setValue] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string>();
+    const textRef = useRef<HTMLTextAreaElement>(null);
+    const router = useRouter();
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const files = e.target.files;
@@ -45,10 +51,41 @@ export default function NewPost({ user: { username, image } }: Props) {
             console.log(files[0]);
         }
     };
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        if (!file) return;
+        setIsLoading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("text", textRef.current?.value ?? "");
+        fetch("/api/posts/", {
+            method: "POST",
+            body: formData,
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    setError(`${res.status} ${res.statusText}`);
+                }
+                router.push("/");
+            })
+            .catch((err) => setError(err.toString()))
+            .finally(() => setIsLoading(false));
+    };
     return (
         <section className="w-full max-w-xl flex flex-col items-center mt-6">
+            {isLoading && (
+                <div className="absolute inset-0 z-10 text-center pt-[20%]">
+                    <GridSpinner />
+                </div>
+            )}
+            {error && (
+                <p className="bg-red-100 w-full text-center text-red-500 font-bold p-2">
+                    asdfdsfdsfsdf
+                </p>
+            )}
             <PostUserAvatar userImage={image || ""} username={username} />
-            <form className="w-full flex flex-col">
+            <form className="w-full flex flex-col" onSubmit={handleSubmit}>
                 <input
                     type="file"
                     name="input-image"
@@ -88,7 +125,6 @@ export default function NewPost({ user: { username, image } }: Props) {
                         </div>
                     )}
                 </label>
-
                 <textarea
                     name="text"
                     id="input-text"
@@ -96,6 +132,9 @@ export default function NewPost({ user: { username, image } }: Props) {
                     required
                     placeholder="Write a caption..."
                     className="outline-none text-lg border border-neutral-300"
+                    ref={textRef}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
                 />
                 <Button text="publish" onClick={() => {}} />
             </form>
