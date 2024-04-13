@@ -1,6 +1,7 @@
 import { SimplePost } from "@/model/post";
 import { client } from "../../sanity/lib/client";
 import { urlForImage } from "../../sanity/lib/image";
+import fs from "fs";
 
 const simplePostProjection = `
     ...,
@@ -118,4 +119,38 @@ export async function addComment(
             },
         ])
         .commit({ autoGenerateArrayKeys: true });
+}
+
+export async function createPost(userId: string, text: string, file: Blob) {
+    return client.assets
+        .upload("image", file)
+        .then((document) => {
+            return client.create(
+                {
+                    _type: "post",
+                    author: {
+                        _type: "reference",
+                        _ref: userId,
+                    },
+                    photo: {
+                        _type: "image",
+                        asset: {
+                            _ref: document._id,
+                            _type: "reference",
+                        },
+                    },
+                    likes: [],
+                    comments: [
+                        {
+                            comment: text,
+                            author: { _ref: userId, _type: "reference" },
+                        },
+                    ],
+                },
+                { autoGenerateArrayKeys: true }
+            );
+        })
+        .catch((error) => {
+            console.error("Upload failed:", error.message);
+        });
 }

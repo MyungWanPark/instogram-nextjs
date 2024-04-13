@@ -1,7 +1,6 @@
 "use client";
 
 import { AuthUser } from "@/model/user";
-import UserProfile from "./UserProfile";
 import PostUserAvatar from "./PostUserAvatar";
 import FileIcon from "./ui/icons/FileIcon";
 import Button from "./ui/Button";
@@ -27,7 +26,6 @@ export default function NewPost({ user: { username, image } }: Props) {
         const files = e.target.files;
         if (files && files[0]) {
             setFile(files[0]);
-            console.log(file);
         }
     };
     const handleDrag = (e: React.DragEvent) => {
@@ -48,7 +46,6 @@ export default function NewPost({ user: { username, image } }: Props) {
         const files = e.dataTransfer.files;
         if (files && files[0]) {
             setFile(files[0]);
-            console.log(files[0]);
         }
     };
 
@@ -76,12 +73,12 @@ export default function NewPost({ user: { username, image } }: Props) {
         <section className="w-full max-w-xl flex flex-col items-center mt-6">
             {isLoading && (
                 <div className="absolute inset-0 z-10 text-center pt-[20%]">
-                    <GridSpinner />
+                    <GridSpinner color="blue" />
                 </div>
             )}
             {error && (
                 <p className="bg-red-100 w-full text-center text-red-500 font-bold p-2">
-                    asdfdsfdsfsdf
+                    {error}
                 </p>
             )}
             <PostUserAvatar userImage={image || ""} username={username} />
@@ -131,7 +128,7 @@ export default function NewPost({ user: { username, image } }: Props) {
                     rows={10}
                     required
                     placeholder="Write a caption..."
-                    className="outline-none text-lg border border-neutral-300"
+                    className="outline-none text-lg border border-neutral-300 p-2 my-5"
                     ref={textRef}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
