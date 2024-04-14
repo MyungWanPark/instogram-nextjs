@@ -4,7 +4,6 @@ import usePosts from "@/hooks/posts";
 
 export default function PostGrid() {
     const { posts, isLoading } = usePosts();
-    console.log(`PostGrid rendered with ${posts?.length} posts`);
     return (
         <div className="w-full">
             {isLoading && (
