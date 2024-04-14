@@ -1,7 +1,7 @@
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { getFollowingPostsBy, getPostById } from "@/service/post";
-import { authOptions } from "@/auth/authOptions";
+import { getPostById } from "@/service/post";
+import { withSession } from "@/util/session";
+import { testParam } from "@/util/date";
 
 type Context = {
     params: {
@@ -10,12 +10,8 @@ type Context = {
 };
 
 export async function GET(request: Request, context: Context) {
-    const session = await getServerSession(authOptions);
-    const user = session?.user;
-    const { id } = context.params;
-
-    if (!user) {
-        return new Response("Authenication error", { status: 401 });
-    }
-    return getPostById(id).then((data) => NextResponse.json(data));
+    return withSession(async () => {
+        const { id } = context.params;
+        return getPostById(id).then((data) => NextResponse.json(data));
+    });
 }

@@ -82,7 +82,7 @@ export default function NewPost({ user: { username, image } }: Props) {
                 </p>
             )}
             <PostUserAvatar userImage={image || ""} username={username} />
-            <form className="w-full flex flex-col" onSubmit={handleSubmit}>
+            <form className="w-full flex flex-col mb-5" onSubmit={handleSubmit}>
                 <input
                     type="file"
                     name="input-image"
