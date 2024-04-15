@@ -16,20 +16,24 @@ export type Tab = "posts" | "liked" | "saved";
 type TabConst = {
     title: Tab;
     icon: React.ReactNode;
+    label: string;
 };
 
 const Tabs: TabConst[] = [
     {
         title: "posts",
         icon: <GridIcon className="w-6 h-6" />,
+        label: "User Posts",
     },
     {
         title: "liked",
         icon: <HeartIcon className="w-6 h-6" />,
+        label: "Liked Posts",
     },
     {
         title: "saved",
         icon: <BookmarkIcon className="w-6 h-6" />,
+        label: "Saved Posts",
     },
 ];
 
@@ -39,7 +43,7 @@ export default function UserPosts({ user: { username } }: Props) {
     return (
         <section className="w-full">
             <ul className="flex justify-evenly uppercase">
-                {Tabs.map(({ title, icon }, index) => (
+                {Tabs.map(({ title, icon, label }, index) => (
                     <li
                         key={title}
                         onClick={() => setTab(title)}
@@ -47,7 +51,10 @@ export default function UserPosts({ user: { username } }: Props) {
                             tab === title && "border-t font-bold"
                         }`}
                     >
-                        <button className="scale-150 md:scale-100">
+                        <button
+                            className="scale-150 md:scale-100"
+                            aria-label={label}
+                        >
                             {icon}
                         </button>
                         <span className="hidden md:inline">{title}</span>

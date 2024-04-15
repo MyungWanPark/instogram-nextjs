@@ -3,6 +3,7 @@ type Props = {
     onToggle: (toggled: boolean) => void;
     outlineIcon: React.ReactNode;
     fillIcon: React.ReactNode;
+    title: string;
 };
 
 export default function ToggleButton({
@@ -10,9 +11,10 @@ export default function ToggleButton({
     onToggle,
     outlineIcon,
     fillIcon,
+    title,
 }: Props) {
     return (
-        <button onClick={() => onToggle(!toggled)}>
+        <button onClick={() => onToggle(!toggled)} aria-label={title}>
             {toggled ? fillIcon : outlineIcon}
         </button>
     );

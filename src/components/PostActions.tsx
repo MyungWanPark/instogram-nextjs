@@ -45,12 +45,14 @@ export default function PostActions({ post, children, onComment }: Props) {
                     onToggle={handleLike}
                     outlineIcon={<HeartIcon />}
                     fillIcon={<HeartFillIcon />}
+                    title={liked ? "unlike" : "like"}
                 />
                 <ToggleButton
                     toggled={bookmarked}
                     onToggle={handleBookmark}
                     outlineIcon={<BookmarkIcon />}
                     fillIcon={<BookmarkFillIcon />}
+                    title={bookmarked ? "unbookmark" : "bookmark"}
                 />
             </div>
             <p className="px-2 text-gray-900 font-bold text-md">
