@@ -8,6 +8,38 @@
 
 > Click the link to see website.&nbsp;&nbsp; [인스타그램](https://instogram-nextjs.vercel.app) <br/>
 
+<br/>
+
+<details open="open">
+<summary>Skills Used</summary>
+
+<br/>
+
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white" /> 
+<img src="https://img.shields.io/badge/Next-000000?style=flat&logo=nextdotjs&logoColor=white" />
+<img src="https://img.shields.io/badge/React-3998B6?style=flat&logo=react&logoColor=white" /> 
+<img src="https://img.shields.io/badge/TailwindCSS-38BDF8?style=flat&logo=Tailwind CSS&logoColor=white" />
+<img src="https://img.shields.io/badge/Sanity-F36458?style=flat&logo=sanity&logoColor=white" />
+<img src="https://img.shields.io/badge/SWR-334155?style=flat&logo=swr&logoColor=white" />
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white" />
+<img src="https://img.shields.io/badge/Next--Auth-8432D9?style=flat" />
+
+- 개발 언어: 타입스크립트 5
+
+- 프레임워크: Next.js 14.1.1
+
+- UI: React.js 18
+
+- CMS(Content Management System): Sanity 3.30.1
+   
+- 네트워크 상태관리 라이브러리: SWR 2.2.5
+
+- 배포: Vercel
+ 
+- 인증: Next-Auth 4.24.7
+
+</details>
+<br/>
 
 ### 상세 설명
 
