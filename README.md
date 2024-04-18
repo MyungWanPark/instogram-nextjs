@@ -1,5 +1,14 @@
 ## 주제: 인스타그램의 주요 기능을 Next.js를 활용하여 구현해본 1인 사이드 프로젝트 입니다.
 
+### Version
+[![Next.js version](https://img.shields.io/badge/Next-14.1.1-green.svg?style=flat-square)](https://nextjs.org/)
+[![React.js version](https://img.shields.io/badge/Node-18.x-orange.svg?style=flat-square)](https://react.dev/)
+
+<br/>
+
+> Click the link to see website.&nbsp;&nbsp; [인스타그램](https://instogram-nextjs.vercel.app) <br/>
+
+
 ### 상세 설명
 
 총 5개의 페이지로 구성
