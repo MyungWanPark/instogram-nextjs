@@ -83,7 +83,7 @@
 
 <br/>
 
-<img width="1274" alt="포스트 목록-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/ef2694f9-df62-4e60-aa8a-02a8dbf11840">
+<img width="1280" alt="post list-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/c3981b08-08cd-470d-8f1b-239486797a36">
 
 <br/>
 <br/>
@@ -140,7 +140,7 @@
 
 <br/>
 
-<img width="1274" alt="검색 결과" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/1be949b7-3491-45f9-9e18-058c53140ce7">
+<img width="1276" alt="upload post-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/ad6a5403-5a95-4bfd-8557-c8add5209528">
 
 <br/>
 <br/>
