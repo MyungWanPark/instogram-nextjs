@@ -27,7 +27,7 @@ export default function PostCard({ post, priority = false }: Props) {
             <Image
                 src={image}
                 alt={`photo by ${username}`}
-                width={300}
+                width={500}
                 height={500}
                 className="w-full object-cover aspect-square"
                 priority={priority}
