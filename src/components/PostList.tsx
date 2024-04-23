@@ -11,7 +11,7 @@ export default function PostList() {
         error,
     } = useSWR<SimplePost[]>("/api/posts");
     return (
-        <section>
+        <section className="w-[80%]">
             {loading && (
                 <div className="text-center mt-32">
                     <GridSpinner />

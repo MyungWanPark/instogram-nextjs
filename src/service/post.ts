@@ -27,6 +27,17 @@ export async function getFollowingPostsBy(username: string) {
         .then(formatDataIncludingImgURL);
 }
 
+export async function getAllPosts() {
+    return client
+        .fetch(
+            `*[_type == "post"] 
+            | order(_createdAt desc){
+                ${simplePostProjection}
+            }`
+        )
+        .then(formatDataIncludingImgURL);
+}
+
 export async function getPostById(id: string) {
     return client
         .fetch(
