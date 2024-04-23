@@ -6,7 +6,7 @@
 
 <br/>
 
-<details open="open">
+<details open="close">
 <summary>Skills Used</summary>
 
 <br/>
@@ -69,6 +69,10 @@
 
 <br/>
 
+<img width="1280" alt="index-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/b4715c37-b54b-46bb-b96f-4747384e1275">
+
+<br/>
+
 - 로그인은 **구글 로그인**으로 구현하였습니다.
 
 - 특정 페이지로 이동하면 navbar의 **아이콘 색을 검정색**으로 표현하여 **현재 머물고 있는 페이지를 확인**할 수 있도록 구현하였습니다.
@@ -76,7 +80,14 @@
 <br/>
 
 ### 홈페이지
----
+
+<br/>
+
+<img width="1274" alt="포스트 목록-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/ef2694f9-df62-4e60-aa8a-02a8dbf11840">
+
+<br/>
+<br/>
+
 주요 기능
 
 - 상단에 로그인한 사용자가 팔로잉 하고 있는 **유저들의 목록**을 보여줍니다.
@@ -107,7 +118,14 @@
 <br/>
 
 ### 사용자 검색 페이지
----
+
+<br/>
+
+<img width="1274" alt="검색 결과" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/03810255-8795-46fd-9021-63d3d94c95b3">
+
+<br/>
+<br/>
+
 주요 기능
 
 - 입력란에 아무것도 입력하지 않으면 **전체 사용자**가 나타납니다.
@@ -119,7 +137,14 @@
 <br/>
 
 ### 새로운 포스트 작성 페이지
----
+
+<br/>
+
+<img width="1274" alt="검색 결과" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/1be949b7-3491-45f9-9e18-058c53140ce7">
+
+<br/>
+<br/>
+
 주요 기능
 
 - 새로운 이미지를 **클릭하여 첨부**하거나, **드래그 앤 드롭으로 첨부** 할 수 있습니다. 이때 드래그 하면 UI를 **파란색으로 강조**하도록 구현하였습니다.
@@ -132,7 +157,13 @@
 <br/>
 
 ### 사용자 프로필 페이지
----
+
+<br/>
+
+<img width="1276" alt="profile image-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/c86cd247-91c8-4aaf-871e-de9d282fc82d">
+
+<br/>
+<br/>
 유저 프로필 페이지 이동 방법 2가지
 
 <br/>
