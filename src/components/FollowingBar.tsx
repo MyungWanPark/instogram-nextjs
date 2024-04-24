@@ -42,18 +42,16 @@ export default function FollowingBar() {
                 <ScrollableBar>
                     {followings?.map(({ username, image }) => {
                         return (
-                            <li>
-                                <Link
-                                    key={username}
-                                    href={`/user/${username}`}
-                                    className="flex flex-col items-center w-20"
-                                >
-                                    <Avatar image={image || ""} heightLight />
-                                    <p className="text-ellipsis overflow-hidden w-full text-center">
-                                        {username}
-                                    </p>
-                                </Link>
-                            </li>
+                            <Link
+                                key={username}
+                                href={`/user/${username}`}
+                                className="flex flex-col items-center w-20"
+                            >
+                                <Avatar image={image || ""} heightLight />
+                                <p className="text-ellipsis overflow-hidden w-full text-center">
+                                    {username}
+                                </p>
+                            </Link>
                         );
                     })}
                 </ScrollableBar>
