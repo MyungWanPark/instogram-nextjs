@@ -17,6 +17,7 @@ export default function CommentForm({ onCommentSubmit }: Props) {
         <form
             className="flex items-center px-2 border-t border-gray-200"
             onSubmit={handleSubmit}
+            aria-label="form"
         >
             <SmileIcon />
             <input

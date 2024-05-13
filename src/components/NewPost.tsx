@@ -61,12 +61,9 @@ export default function NewPost({ user: { username, image } }: Props) {
             body: formData,
         })
             .then((res) => {
-                console.log("goes to then");
                 if (!res.ok) {
                     setError(`${res.status} ${res.statusText}`);
                 }
-                console.log("goes to push");
-
                 router.push("/");
             })
             .catch((err) => setError(err.toString()))
@@ -76,7 +73,7 @@ export default function NewPost({ user: { username, image } }: Props) {
         <section className="w-full max-w-xl flex flex-col items-center mt-6">
             {isLoading && (
                 <div className="absolute inset-0 z-10 text-center pt-[20%]">
-                    <GridSpinner color="blue" data-testid="loading-spinner" />
+                    <GridSpinner color="blue" />
                 </div>
             )}
             {error && (

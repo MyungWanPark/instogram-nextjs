@@ -2,10 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import NewPost from "@/components/NewPost";
-// import { useRouter as useRouterOriginal } from "next/navigation";
 import * as nextRouter from "next/navigation";
-import PostUserAvatar from "@/components/PostUserAvatar";
-import FileIcon from "@/components/ui/icons/FileIcon";
 
 const mockUser = {
     id: "123",
@@ -21,9 +18,6 @@ jest.mock("next/navigation", () => ({
 }));
 
 beforeAll(() => {
-    /*     (nextRouter.useRouter as jest.Mock).mockImplementation(() => ({
-        push: jest.fn(),
-    })); */
     global.URL.createObjectURL = jest.fn(() => "https://dummyurl.com/dummy");
 });
 afterAll(() => {
@@ -86,67 +80,9 @@ describe("NewPost Component", () => {
             expect(fetch).toHaveBeenCalled();
             expect(fetch).toHaveBeenCalledWith("/api/posts/", {
                 method: "POST",
-                body: expect.any(FormData), // Ensures FormData was sent
+                body: expect.any(FormData),
             });
             expect(push).toHaveBeenCalledWith("/");
         });
     });
 });
-
-/* describe("App Component with LoginForm", () => {
-    test("submits the form with username and password", () => {
-        const mockConsoleLog = jest.spyOn(console, "log");
-        render(<App />);
-
-        fireEvent.change(screen.getByLabelText(/username/i), {
-            target: { value: "john_doe" },
-        });
-        fireEvent.change(screen.getByLabelText(/password/i), {
-            target: { value: "123456" },
-        });
-        fireEvent.submit(screen.getByRole("button", { name: /login/i }));
-
-        expect(mockConsoleLog).toHaveBeenCalledWith("Login data:", {
-            username: "john_doe",
-            password: "123456",
-        });
-    });
-
-    afterEach(() => {
-        jest.restoreAllMocks();
-    });
-});
-
-describe("Comments Section", () => {
-    it("allows users to add a comment to a post", async () => {
-        const mockSubmitComment = jest.fn();
-        render(<CommentForm onSubmit={mockSubmitComment} />);
-        userEvent.type(
-            screen.getByRole("textbox", { name: /add a comment/i }),
-            "Nice pic!"
-        );
-        userEvent.click(screen.getByRole("button", { name: /post/i }));
-
-        expect(mockSubmitComment).toHaveBeenCalledWith("Nice pic!");
-    });
-
-    it("displays an error if the comment fails to post", async () => {
-        const mockSubmitComment = jest
-            .fn()
-            .mockRejectedValue(new Error("Failed to post comment"));
-        render(<CommentForm onSubmit={mockSubmitComment} />);
-        userEvent.click(screen.getByRole("button", { name: /post/i }));
-
-        const errorAlert = await screen.findByRole("alert");
-        expect(errorAlert).toHaveTextContent("Failed to post comment");
-    });
-});
- */
-/*   describe('Feed', () => {
-    it('loads posts on component mount', async () => {
-      const mockFetchPosts = jest.fn().mockResolvedValue([{ id: 1, title: 'First post', content: 'Hello world!' }]);
-      render(<Feed fetchPosts={mockFetchPosts} />);
-      expect(mockFetchPosts).toHaveBeenCalled();
-      
-      const posts = await screen.findAllByRole('article');
-      expect(posts).toHaveLength(1 */

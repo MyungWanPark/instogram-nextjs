@@ -8,5 +8,5 @@ const GridLoader = dynamic(
 );
 
 export default function GridSpinner({ color = "red" }) {
-    return <GridLoader color={color} />;
+    return <GridLoader color={color} data-testid="loading-spinner" />;
 }
