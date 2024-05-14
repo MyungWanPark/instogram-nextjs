@@ -15,8 +15,8 @@ export default function PostDetail({ post }: Props) {
     const comments = detailPost?.comments;
 
     return (
-        <section className="flex w-full h-full">
-            <div className="relative basis-3/5">
+        <section className="flex flex-col sm:flex-row w-full h-full">
+            <div className="relative h-[50%] sm:basis-3/5 sm:h-auto">
                 <Image
                     src={image}
                     alt={`photo by ${username}`}
@@ -25,7 +25,7 @@ export default function PostDetail({ post }: Props) {
                     className="w-full object-cover"
                 />
             </div>
-            <div className="basis-2/5 w-full flex flex-col">
+            <div className="h-[50%] sm:basis-2/5 sm:h-auto w-full flex flex-col">
                 <PostUserAvatar userImage={userImage} username={username} />
                 <ul className="border-t border-gray-200 h-full overflow-y-auto p-4 mb-1">
                     {comments &&

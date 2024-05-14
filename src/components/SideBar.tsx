@@ -7,7 +7,7 @@ type Props = {
 
 export default function SideBar({ user: { name, username, image } }: Props) {
     return (
-        <>
+        <section className="sm:w-full w-[80%]">
             <div className="flex items-center">
                 {image && <Avatar image={image} />}
                 <div className="ml-4">
@@ -23,6 +23,6 @@ export default function SideBar({ user: { name, username, image } }: Props) {
             <p className="text-sm font-bold text-neutral-500 mt-8">
                 @Copyright Instogram from metal
             </p>
-        </>
+        </section>
     );
 }
