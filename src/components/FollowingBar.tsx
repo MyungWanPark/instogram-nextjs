@@ -15,12 +15,7 @@ export default function FollowingBar() {
     */
     const { user, isLoading: loading, error } = useMe();
     // const followings = data?.following;
-    const followings = user?.following && [
-        ...user.following,
-        ...user.following,
-        ...user.following,
-        ...user.following,
-    ];
+    const followings = user?.following && [...user.following];
 
     return (
         <section className="p-4 shadow-md rounded-lg w-[80%] flex justify-center min-h-[90px] overflow-x-auto relative z-0">

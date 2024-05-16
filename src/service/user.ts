@@ -95,7 +95,7 @@ export async function follow(myId: string, targetId: string) {
         .transaction()
         .patch(myId, (user) =>
             user
-                .setIfMissing({ follow: [] })
+                .setIfMissing({ following: [] })
                 .append("following", [{ _ref: targetId, _type: "reference" }])
         )
         .patch(targetId, (targetUser) =>
