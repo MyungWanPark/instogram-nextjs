@@ -10,7 +10,8 @@ type Props = {
 
 export default function SignIn({ providers, callbackUrl }: Props) {
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-5">
+            <p className="text-center text-xl">{"Log in As ..."}</p>
             {Object.values(providers).map((provider) => {
                 return (
                     <ColorButton

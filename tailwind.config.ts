@@ -10,7 +10,8 @@ const config: Config = {
         extend: {
             colors: {
                 google: "#4285F4",
-                guest: "#202E51",
+                kakao: "#FAE100",
+                guest: "black",
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

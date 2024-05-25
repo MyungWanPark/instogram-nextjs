@@ -1,4 +1,6 @@
-type ButtonText = "Sign out" | "Sign in" | "Google" | "Guest";
+import GoogleIcon from "./icons/GoogleIcon";
+import GuestIcon from "./icons/GuestIcon";
+import KakaoIcon from "./icons/KakaoIcon";
 
 type Props = {
     text: string;
@@ -9,45 +11,56 @@ type Props = {
 const InstagramColor =
     "bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300";
 
-const GuestColor = "bg-gradient-to-bl from-lime-600 via-lime-400 to-lime-200";
-
 const ColorsClass = [
-    {
-        text: "Google",
-        color: "bg-google",
-    },
     {
         text: "Sign out",
         color: InstagramColor,
+        icon: "",
     },
     {
         text: "Sign in",
         color: InstagramColor,
+        icon: "",
     },
-    { text: "Guest", color: "bg-guest" },
+    {
+        text: "Google",
+        color: "bg-google",
+        icon: <GoogleIcon />,
+    },
+    {
+        text: "Kakao",
+        color: "bg-kakao",
+        icon: <KakaoIcon />,
+    },
+    {
+        text: "Guest",
+        color: "bg-guest",
+        icon: <GuestIcon />,
+    },
 ];
 
 export default function ColorButton({ text, onClick, size = "small" }: Props) {
     const buttonColor =
         ColorsClass.find((item) => item.text === text)?.color ?? InstagramColor;
-    const isNavBtn = size === "small";
-    const isGuest = text === "Guest";
+    const icon =
+        ColorsClass.find((item) => item.text === text)?.icon ?? undefined;
 
     return (
         <div
-            className={`${buttonColor} ${
-                size === "big" ? "p-[0.2rem]" : "p-[0.15rem]"
+            className={`${buttonColor} p-[0.15rem] ${
+                size === "big" && "rounded-lg"
             }`}
         >
             <button
                 onClick={onClick}
-                className={`w-full bg-white p-[0.3rem] rounded-sm hover:opacity-90 transition-opacity ${
-                    size === "big" ? "text-2xl p-5" : "text-base"
+                className={`w-full bg-white p-[0.3rem] rounded-sm hover:opacity-90 transition-opacity flex items-center gap-2 ${
+                    size === "big"
+                        ? "text-2xl !rounded-md py-3 sm:px-16 px-10"
+                        : "text-base"
                 }`}
             >
-                {isNavBtn && text}
-                {isGuest && `I 'm ${text}`}
-                {!isNavBtn && !isGuest && `Log in as ${text}`}
+                {icon && <span>{icon}</span>}
+                <span>{text}</span>
             </button>
         </div>
     );
