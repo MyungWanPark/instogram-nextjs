@@ -10,15 +10,17 @@ type Props = {
 
 export default function SignIn({ providers, callbackUrl }: Props) {
     return (
-        <>
-            {Object.values(providers).map((provider) => (
-                <ColorButton
-                    key={provider.id}
-                    text={`Sign in with ${provider.name}`}
-                    onClick={() => signIn(provider.id, { callbackUrl })}
-                    size="big"
-                />
-            ))}
-        </>
+        <div className="flex flex-col gap-3">
+            {Object.values(providers).map((provider) => {
+                return (
+                    <ColorButton
+                        key={provider.id}
+                        text={provider.name}
+                        onClick={() => signIn(provider.id, { callbackUrl })}
+                        size="big"
+                    />
+                );
+            })}
+        </div>
     );
 }
