@@ -4,7 +4,7 @@
 <br/>
 
 > Click the link to see website.&nbsp;&nbsp; [인스타그램](https://instogram-nextjs.vercel.app) <br/>
-
+(Guest 모드로 빠른 로그인 가능합니다.)
 <br/>
 
 <details open="close">
@@ -21,7 +21,7 @@
 <img src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white" />
 <img src="https://img.shields.io/badge/Next--Auth-8432D9?style=flat" />
 
-- 개발 언어: 타입스크립트 5
+- 개발 언어: Typescript 5
 
 - 프레임워크: Next.js 14.1.1
 
@@ -56,7 +56,7 @@
 
 ### 공통 기능
 ---
-- 로그인이 필요한 페이지
+- 사용자 정보가 필요하기 때문에 **로그인**이 필요한 페이지 입니다.
 
   1. 홈
 
@@ -66,15 +66,9 @@
 
 <br/>
 
-해당 페이지를 로그인 하지 않고 방문할 경우, **sign in with google** 페이지로 이동할 수 있게 구현하였습니다.
+- (해당 페이지를 로그인 하지 않고 방문할 경우, **Sign In** 페이지로 이동할 수 있게 구현하였습니다.)
 
 <br/>
-
-<img width="1280" alt="index-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/b4715c37-b54b-46bb-b96f-4747384e1275">
-
-<br/>
-
-- 로그인은 **구글 로그인**으로 구현하였습니다.
 
 - 특정 페이지로 이동하면 navbar의 **아이콘 색을 검정색**으로 표현하여 **현재 머물고 있는 페이지를 확인**할 수 있도록 구현하였습니다.
 
@@ -195,8 +189,20 @@
 <br/>
 
 ### 로그인 페이지
----
-Next-Auth를 활용하여 Google 계정으로 로그인 할 수 있는 페이지 입니다. 
+
+<br/>
+
+<img width="1276" alt="login_page-min" src="https://github.com/MyungWanPark/instogram-nextjs/assets/56289900/40a12b10-44fc-41c4-bacb-6554986da984">
+
+<br/>
+<br/>
+
+주요 기능
+
+- **Guest, Google, Kakao** 계정으로 소셜 로그인 할 수 있습니다. <br/>
+
+- **Guest** 로그인은 빠른 로그인을 위한 기능입니다. 별도의 인증을 하지 않아도 게스트로 로그인 할 수 있습니다.
+
 <br/>
 
 **로그인 권한이 필요한 페이지**
@@ -207,4 +213,4 @@ Next-Auth를 활용하여 Google 계정으로 로그인 할 수 있는 페이지
 
 3. 자신의 프로필 페이지)
 
-1~3 번의 페이지에 **로그인이 되어있지 않는 상태로 접근한다면** 로그인 페이지로 **redirect** 되도록 구현하였습니다.
+1~3 번의 페이지에 **로그인 하지 않는 상태로 접근한다면** 로그인 페이지로 **redirect** 되도록 구현하였습니다.
