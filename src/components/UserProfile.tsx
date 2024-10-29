@@ -26,7 +26,7 @@ export default function UserProfile({ user }: Props) {
         <section className="w-full flex flex-col md:flex-row border-b border-neutral-300 justify-center items-center py-12">
             <Avatar image={image ?? ""} heightLight size="xlarge" />
             <div className="md:ml-10">
-                <div className="flex flex-col md:flex-row justify-center items-center">
+                <div className="flex flex-col md:flex-row justify-evenly items-center">
                     <h1 className="text-2xl mb-2 font-bold  md:mb-0">
                         {username}
                     </h1>
