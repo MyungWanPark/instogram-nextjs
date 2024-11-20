@@ -5,7 +5,7 @@ export { default } from "next-auth/middleware";
 
 export async function middleware(req: NextRequest) {
     const token = await getToken({ req });
-    const { pathname, search, origin, basePath } = req.nextUrl;
+    // const { pathname, search, origin, basePath } = req.nextUrl;
 
     if (!token) {
         if (req.nextUrl.pathname.startsWith("/api")) {

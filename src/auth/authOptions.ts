@@ -66,6 +66,12 @@ export const authOptions: AuthOptions = {
             });
             return true;
         },
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+            }
+            return token;
+        },
         async session({ session, token }) {
             // Send properties to the client, like an access_token and user id from a provider.
             const user = session.user;
@@ -78,12 +84,6 @@ export const authOptions: AuthOptions = {
                 };
             }
             return session;
-        },
-        async jwt({ token, user }) {
-            if (user) {
-                token.id = user.id;
-            }
-            return token;
         },
     },
 };
