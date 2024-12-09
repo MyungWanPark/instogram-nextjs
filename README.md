@@ -4,7 +4,7 @@
 <br/>
 
 > Click the link to see website.&nbsp;&nbsp; [인스타그램](https://instogram-nextjs.vercel.app) <br/>
-(Guest 모드로 빠른 로그인 가능합니다.)
+(Guest 모드를 클릭하면 빠른 로그인 가능합니다.)
 <br/>
 
 <details open="close">
