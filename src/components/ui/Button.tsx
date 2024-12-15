@@ -14,7 +14,7 @@ export default function Button({
     return (
         <button
             onClick={onClick}
-            className={`py-2 px-6 text-white rounded-md font-bold ${
+            className={`py-2 px-6 text-white rounded-md font-bold inline-block ${
                 isRed ? "bg-red-500" : "bg-sky-500"
             } ${disabled ? "opacity-80" : ""}`}
             disabled={disabled}
