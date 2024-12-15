@@ -112,7 +112,7 @@ export default function NewPost({ user: { username, image } }: Props) {
                         </div>
                     )}
                     {file && (
-                        <div className="relative w-full aspect-square">
+                        <div className="relative w-full aspect-square max-h-60">
                             <Image
                                 src={URL.createObjectURL(file)}
                                 alt="local-file"
