@@ -16,7 +16,7 @@ export default function Button({
             onClick={onClick}
             className={`py-2 px-6 text-white rounded-md font-bold ${
                 isRed ? "bg-red-500" : "bg-sky-500"
-            } ${disabled && "opacity-80"}`}
+            } ${disabled ? "opacity-80" : ""}`}
             disabled={disabled}
         >
             {text}
