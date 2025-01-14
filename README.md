@@ -25,7 +25,7 @@
 
 - 프레임워크: Next.js 14.1.1
 
-- UI: React.js 18
+- UI: React 18
 
 - CMS(Content Management System): Sanity 3.30.1
    
